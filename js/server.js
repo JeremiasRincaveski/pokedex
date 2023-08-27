@@ -2,8 +2,10 @@ const ul = document.getElementById("pokemons");
 
 const criaPokemon = pokemon => {
   const {name : nome, id, types: tipos, sprites: {back_default : img}} = pokemon
+  const tipo = tipos[0].type.name
+  console.log(tipo);
   const li = document.createElement(`li`);
-  li.className = `pokemon`
+  li.className = `pokemon ${tipo}`
   li.innerHTML = `
     <div class="wrapper">
       <h2 class="pokemonNome">${nome}</h2>
@@ -23,6 +25,7 @@ const criaPokemon = pokemon => {
   tipos.forEach(tipos => {
     const li = document.createElement(`li`);
     li.innerText = tipos.type.name;
+    li.className = tipos.type.name;
     atributos.appendChild(li);
   })
 
