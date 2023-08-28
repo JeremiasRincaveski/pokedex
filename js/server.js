@@ -1,10 +1,10 @@
 const ul = document.getElementById("pokemons");
 let offset = 0;
 let limit = 10;
-const limitMaximo = 13
+const limitMaximo = 151
 
 const criaPokemon = pokemon => {
-  const {name : nome, id, types: tipos, sprites: {back_default : img}} = pokemon
+  const {name : nome, id, types: tipos, sprites: {front_default : src}} = pokemon
   const tipo = tipos[0].type.name
   const li = document.createElement(`li`);
   li.className = `pokemon ${tipo}`
@@ -18,19 +18,22 @@ const criaPokemon = pokemon => {
       <ul class="pokemonAtributos">
       </ul>
 
-      <img class="pokemonImg" src="${img}" alt="pokemon ${nome}">
+      <img class="pokemonImg" src="${src}" alt="pokemon ${nome}">
     </div>
   `;
 
   const atributos = li.querySelector(`.pokemonAtributos`);
 
-  tipos.forEach(tipos => {
+  tipos.forEach(tipo => {
     const li = document.createElement(`li`);
-    li.innerText = tipos.type.name;
-    li.className = tipos.type.name;
+    li.innerText = tipo.type.name;
+    li.className = tipo.type.name;
     atributos.appendChild(li);
   })
 
+  li.addEventListener(`click`, () => {
+    ativaModal(id)
+  })
   ul.appendChild(li);
 }
 
@@ -43,15 +46,15 @@ const chamaPokemons = () => {
   .then(data => data.json())
   .then(data => data.results)
   .then(data => {
-    const promesas = []
+    const promessas = []
 
     data.forEach(pokemon => {
-      promesas.push(fetch(pokemon.url).then(data => data.json()))
+      promessas.push(fetch(pokemon.url).then(data => data.json()))
     })
 
     offset += limit;
 
-    Promise.all(promesas)
+    Promise.all(promessas)
       .then(responses => {
         responses.forEach(criaPokemon)
       })

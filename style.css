@@ -111,6 +111,7 @@ main {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
   gap: 1rem;
+  cursor: pointer;
 }
 
 .wrapper {
@@ -162,4 +163,102 @@ main {
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+}
+
+#modal {
+  height: 100vh;
+  width: 100vw;
+  display: none;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+}
+
+#modal.active {
+  display: flex;
+}
+
+.wrapperModal {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalPokemon {
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalNome {
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.modalId {
+  position: absolute;
+  right: 1rem;
+  top: 1.6rem;
+  font-size: .8rem;
+  color: #Fff;
+}
+
+.modalLista {
+  display: flex;
+  flex-direction: row;
+  gap: .7rem;
+  margin-top: .5rem;
+}
+
+.modalLista > li {
+  filter: brightness(1.1);
+  padding: .25rem .5rem;
+  font-size: .7rem;
+  border-radius: 1rem;
+  color: #fff;
+}
+
+.modalPokemon > img {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  bottom: -3rem;
+  margin-top: -3rem;
+}
+
+.modalAtributes {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 2rem 2rem 0 0;
+  padding: 1rem;
+  bottom: 0;
+}
+
+.modalAtributos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .5rem;
+}
+
+.modalAtributos > li {
+  display: inline-flex;
+  font-size: .678rem;
+  font-weight: 700;
+  color: gray;
+}
+
+.modalAtributos > li > span {
+  color: #000;
+  font-weight: 700;
+  position: relative;
+  left: 3rem;
+}
+
+#tabela th {
+  text-align: left;
+  width: 6rem;
+  color: gray;
 }
